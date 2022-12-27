@@ -77,8 +77,8 @@ void Materyal::MateryalYazdýr()
 
 struct Materyal {
   int id;
-  std::string title;
-  std::string author;
+  string title;
+  string author;
 };
 
 struct Node {
@@ -91,7 +91,7 @@ class MateryalSearch {
  public:
   MateryalSearch() : root_(nullptr) {}
 
-  void Insert(int id, const std::string& title, const std::string& author) {
+  void Insert(int id, const string& title, const string& author) {
     Materyal materyal{id, title, author};
     Insert(materyal, &root_);
   }
