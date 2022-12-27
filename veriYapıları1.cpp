@@ -53,4 +53,91 @@ void Materyal::MateryalYazdýr()
 }
 //End Class Materyal
 
+//Kitap arþivinde kitap arama (BST)
 
+//BookSearch
+
++ root_: Node*
+
++ Insert(id: int, title: string, author: string)
++ Search(id: int) -> materyal*
+
++ Insert(materyal: Materyal, node: Node**)
++ Search(id: int, node: Node*) -> materyal*
+
+//Node
++ materyal: Materyal
++ left: Node*
++ right: Node*
+
+//Book
++ id: int
++ title: string
++ author: string
+
+struct Materyal {
+  int id;
+  std::string title;
+  std::string author;
+};
+
+struct Node {
+  Materyal materyal;
+  Node* left;
+  Node* right;
+};
+
+class MateryalSearch {
+ public:
+  MateryalSearch() : root_(nullptr) {}
+
+  void Insert(int id, const std::string& title, const std::string& author) {
+    Materyal materyal{id, title, author};
+    Insert(materyal, &root_);
+  }
+
+  Materyal* Search(int id) {
+    return Search(id, root_);
+  }
+
+ private:
+  void Insert(const Materyal& materyal, Node** node) {
+    if (*node == nullptr) {
+      *node = new Node{materyal, nullptr, nullptr};
+    } else if (materyal.id < (*node)->materyal.id) {
+      Insert(materyal, &(*node)->left);
+    } else {
+      Insert(materyal, &(*node)->right);
+    }
+  }
+
+  Materyal* Search(int id, Node* node) {
+    if (node == nullptr) {
+      return nullptr;
+    } else if (id == node->materyal.id) {
+      return &node->materyal;
+    } else if (id < node->materyal.id) {
+      return Search(id, node->left);
+    } else {
+      return Search(id, node->right);
+    }
+  }
+
+  Node* root_;
+};
+
+int main() 
+{
+  MateryalSearch materyal_search;
+
+  // Insert some books into the book search tree.
+  materyal_search.Insert(1, "The Great Gatsby", "F. Scott Fitzgerald");
+  materyal_search.Insert(2, "To Kill a Mockingbird", "Harper Lee");
+  materyal_search.Insert(3, "Pride and Prejudice", "Jane Austen");
+  materyal_search.Insert(4, "The Catcher in the Rye", "J.D. Salinger");
+  materyal_search.Insert(5, "The Grapes of Wrath", "John Steinbeck
+
+}
+
+
+//Regenerate response
